@@ -7,7 +7,7 @@ using System.Collections;
 
 public class MementoStructure : MonoBehaviour
 {
-	void Start ( )
+    private void Start()
     {
         Originator o = new Originator();
         o.State = "On";
@@ -21,14 +21,13 @@ public class MementoStructure : MonoBehaviour
 
         // Restore saved state
         o.SetMemento(c.Memento);
-
     }
 }
 
 /// <summary>
 /// The 'Originator' class
 /// </summary>
-class Originator
+internal class Originator
 {
     private string _state;
 
@@ -43,7 +42,7 @@ class Originator
         }
     }
 
-    // Creates memento 
+    // Creates memento
     public Memento CreateMemento()
     {
         return (new Memento(_state));
@@ -60,7 +59,7 @@ class Originator
 /// <summary>
 /// The 'Memento' class
 /// </summary>
-class Memento
+internal class Memento
 {
     private string _state;
 
@@ -80,7 +79,7 @@ class Memento
 /// <summary>
 /// The 'Caretaker' class
 /// </summary>
-class Caretaker
+internal class Caretaker
 {
     private Memento _memento;
 

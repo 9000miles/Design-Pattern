@@ -12,7 +12,7 @@ namespace ObserverExample1
 {
     public class ObserverExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             // Create IBM stock and attach investors
             IBM ibm = new IBM("IBM", 120.00);
@@ -24,14 +24,13 @@ namespace ObserverExample1
             ibm.Price = 121.00;
             ibm.Price = 120.50;
             ibm.Price = 120.75;
-
         }
     }
 
     /// <summary>
     /// The 'Subject' abstract class
     /// </summary>
-    abstract class Stock
+    internal abstract class Stock
     {
         private string _symbol;
         private double _price;
@@ -88,7 +87,7 @@ namespace ObserverExample1
     /// <summary>
     /// The 'ConcreteSubject' class
     /// </summary>
-    class IBM : Stock
+    internal class IBM : Stock
     {
         // Constructor
         public IBM(string symbol, double price)
@@ -100,7 +99,7 @@ namespace ObserverExample1
     /// <summary>
     /// The 'Observer' interface
     /// </summary>
-    interface IInvestor
+    internal interface IInvestor
     {
         void Update(Stock stock);
     }
@@ -108,7 +107,7 @@ namespace ObserverExample1
     /// <summary>
     /// The 'ConcreteObserver' class
     /// </summary>
-    class Investor : IInvestor
+    internal class Investor : IInvestor
     {
         private string _name;
         private Stock _stock;
@@ -122,7 +121,7 @@ namespace ObserverExample1
         public void Update(Stock stock)
         {
             //Debug.Log("Notified {0} of {1}'s " +"change to {2:C}", _name, stock.Symbol, stock.Price);
-            Debug.Log("Notified "+ _name+" of "+ stock+"'s " + "change to "+stock.Price);
+            Debug.Log("Notified " + _name + " of " + stock + "'s " + "change to " + stock.Price);
         }
 
         // Gets or sets the stock
