@@ -7,14 +7,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-//This real-world code demonstates the Builder pattern in which different vehicles are assembled in a step-by-step fashion. 
+//This real-world code demonstates the Builder pattern in which different vehicles are assembled in a step-by-step fashion.
 //The Shop uses VehicleBuilders to construct a variety of Vehicles in a series of sequential steps.
 
 namespace BuilderPatternExample1
 {
     public class BuilderPatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             VehicleBuilder builder;
 
@@ -33,14 +33,13 @@ namespace BuilderPatternExample1
             builder = new MotorCycleBuilder();
             shop.Construct(builder);
             builder.Vehicle.Show();
-
         }
     }
 
     /// <summary>
     /// The 'Director' class
     /// </summary>
-    class Shop
+    internal class Shop
     {
         // Builder uses a complex series of steps
         public void Construct(VehicleBuilder vehicleBuilder)
@@ -55,7 +54,7 @@ namespace BuilderPatternExample1
     /// <summary>
     /// The 'Builder' abstract class
     /// </summary>
-    abstract class VehicleBuilder
+    internal abstract class VehicleBuilder
     {
         protected Vehicle vehicle;
 
@@ -67,15 +66,18 @@ namespace BuilderPatternExample1
 
         // Abstract build methods
         public abstract void BuildFrame();
+
         public abstract void BuildEngine();
+
         public abstract void BuildWheels();
+
         public abstract void BuildDoors();
     }
 
     /// <summary>
     /// The 'ConcreteBuilder1' class
     /// </summary>
-    class MotorCycleBuilder : VehicleBuilder
+    internal class MotorCycleBuilder : VehicleBuilder
     {
         public MotorCycleBuilder()
         {
@@ -103,11 +105,10 @@ namespace BuilderPatternExample1
         }
     }
 
-
     /// <summary>
     /// The 'ConcreteBuilder2' class
     /// </summary>
-    class CarBuilder : VehicleBuilder
+    internal class CarBuilder : VehicleBuilder
     {
         public CarBuilder()
         {
@@ -138,7 +139,7 @@ namespace BuilderPatternExample1
     /// <summary>
     /// The 'ConcreteBuilder3' class
     /// </summary>
-    class ScooterBuilder : VehicleBuilder
+    internal class ScooterBuilder : VehicleBuilder
     {
         public ScooterBuilder()
         {
@@ -169,11 +170,10 @@ namespace BuilderPatternExample1
     /// <summary>
     /// The 'Product' class
     /// </summary>
-    class Vehicle
+    internal class Vehicle
     {
         private string _vehicleType;
-        private Dictionary<string, string> _parts =
-          new Dictionary<string, string>();
+        private Dictionary<string, string> _parts = new Dictionary<string, string>();
 
         // Constructor
         public Vehicle(string vehicleType)

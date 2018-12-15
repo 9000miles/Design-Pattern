@@ -6,14 +6,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-//This real-world code demonstrates the Strategy pattern which encapsulates sorting algorithms in the form of sorting objects. 
+//This real-world code demonstrates the Strategy pattern which encapsulates sorting algorithms in the form of sorting objects.
 //This allows clients to dynamically change sorting strategies including Quicksort, Shellsort, and Mergesort.
 
 namespace StrategyPatternExample1
 {
     public class StrategyPatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             // Two contexts following different strategies
             SortedList studentRecords = new SortedList();
@@ -32,14 +32,13 @@ namespace StrategyPatternExample1
 
             studentRecords.SetSortStrategy(new MergeSort());
             studentRecords.Sort();
-
         }
     }
 
     /// <summary>
     /// The 'Strategy' abstract class
     /// </summary>
-    abstract class SortStrategy
+    internal abstract class SortStrategy
     {
         public abstract void Sort(List<string> list);
     }
@@ -47,7 +46,7 @@ namespace StrategyPatternExample1
     /// <summary>
     /// A 'ConcreteStrategy' class
     /// </summary>
-    class QuickSort : SortStrategy
+    internal class QuickSort : SortStrategy
     {
         public override void Sort(List<string> list)
         {
@@ -59,7 +58,7 @@ namespace StrategyPatternExample1
     /// <summary>
     /// A 'ConcreteStrategy' class
     /// </summary>
-    class ShellSort : SortStrategy
+    internal class ShellSort : SortStrategy
     {
         public override void Sort(List<string> list)
         {
@@ -71,7 +70,7 @@ namespace StrategyPatternExample1
     /// <summary>
     /// A 'ConcreteStrategy' class
     /// </summary>
-    class MergeSort : SortStrategy
+    internal class MergeSort : SortStrategy
     {
         public override void Sort(List<string> list)
         {
@@ -83,7 +82,7 @@ namespace StrategyPatternExample1
     /// <summary>
     /// The 'Context' class
     /// </summary>
-    class SortedList
+    internal class SortedList
     {
         private List<string> _list = new List<string>();
         private SortStrategy _sortstrategy;

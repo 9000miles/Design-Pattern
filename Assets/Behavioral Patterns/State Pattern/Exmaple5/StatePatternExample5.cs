@@ -5,19 +5,31 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace StatePatternExample5
 {
-
     public class StatePatternExample5 : MonoBehaviour
     {
-        void Start()
+        private SineAnimation sine;
+        public int age = 434;
+        public int m_HAge
         {
+            get { return age; }
+            set { age = value; }
+        }
+
+        private void Start()
+        {
+            sine = GetComponent<SineAnimation>();
+            Debug.Log(sine.walk);
+            Debug.Log(SineAnimation.run);
             UnitTest();
         }
 
-        void UnitTest()
+        private void UnitTest()
         {
             Context theContext = new Context();
             theContext.SetState(new ConcreteStateA(theContext));
@@ -25,7 +37,8 @@ namespace StatePatternExample5
             theContext.Request(15);
             theContext.Request(25);
             theContext.Request(35);
-
+            int[] fa;
+            var transforms = Selection.gameObjects.Select(go => go.transform).ToArray();
         }
     }
 
@@ -34,7 +47,7 @@ namespace StatePatternExample5
     /// </summary>
     public class Context
     {
-        State m_State = null;
+        private State m_State = null;
 
         public void Request(int Value)
         {
@@ -59,6 +72,7 @@ namespace StatePatternExample5
         {
             m_Context = theContext;
         }
+
         public abstract void Handle(int Value);
     }
 
@@ -76,7 +90,6 @@ namespace StatePatternExample5
             if (Value > 10)
                 m_Context.SetState(new ConcreteStateB(m_Context));
         }
-
     }
 
     /// <summary>
@@ -93,7 +106,6 @@ namespace StatePatternExample5
             if (Value > 20)
                 m_Context.SetState(new ConcreteStateC(m_Context));
         }
-
     }
 
     /// <summary>
@@ -111,9 +123,4 @@ namespace StatePatternExample5
                 m_Context.SetState(new ConcreteStateA(m_Context));
         }
     }
-
-
 }
-
-
-

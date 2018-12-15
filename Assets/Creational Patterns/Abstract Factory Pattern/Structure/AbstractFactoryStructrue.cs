@@ -7,7 +7,7 @@ using System.Collections;
 
 public class AbstractFactoryStructrue : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         // Abstract factory #1
         AbstractFactory factory1 = new ConcreteFactory1();
@@ -24,22 +24,23 @@ public class AbstractFactoryStructrue : MonoBehaviour
 /// <summary>
 /// The 'AbstractFactory' abstract class
 /// </summary>
-abstract class AbstractFactory
+internal abstract class AbstractFactory
 {
     public abstract AbstractProductA CreateProductA();
+
     public abstract AbstractProductB CreateProductB();
 }
-
 
 /// <summary>
 /// The 'ConcreteFactory1' class
 /// </summary>
-class ConcreteFactory1 : AbstractFactory
+internal class ConcreteFactory1 : AbstractFactory
 {
     public override AbstractProductA CreateProductA()
     {
         return new ProductA1();
     }
+
     public override AbstractProductB CreateProductB()
     {
         return new ProductB1();
@@ -49,12 +50,13 @@ class ConcreteFactory1 : AbstractFactory
 /// <summary>
 /// The 'ConcreteFactory2' class
 /// </summary>
-class ConcreteFactory2 : AbstractFactory
+internal class ConcreteFactory2 : AbstractFactory
 {
     public override AbstractProductA CreateProductA()
     {
         return new ProductA2();
     }
+
     public override AbstractProductB CreateProductB()
     {
         return new ProductB2();
@@ -64,30 +66,29 @@ class ConcreteFactory2 : AbstractFactory
 /// <summary>
 /// The 'AbstractProductA' abstract class
 /// </summary>
-abstract class AbstractProductA
+internal abstract class AbstractProductA
 {
 }
 
 /// <summary>
 /// The 'AbstractProductB' abstract class
 /// </summary>
-abstract class AbstractProductB
+internal abstract class AbstractProductB
 {
     public abstract void Interact(AbstractProductA a);
 }
 
-
 /// <summary>
 /// The 'ProductA1' class
 /// </summary>
-class ProductA1 : AbstractProductA
+internal class ProductA1 : AbstractProductA
 {
 }
 
 /// <summary>
 /// The 'ProductB1' class
 /// </summary>
-class ProductB1 : AbstractProductB
+internal class ProductB1 : AbstractProductB
 {
     public override void Interact(AbstractProductA a)
     {
@@ -98,14 +99,14 @@ class ProductB1 : AbstractProductB
 /// <summary>
 /// The 'ProductA2' class
 /// </summary>
-class ProductA2 : AbstractProductA
+internal class ProductA2 : AbstractProductA
 {
 }
 
 /// <summary>
 /// The 'ProductB2' class
 /// </summary>
-class ProductB2 : AbstractProductB
+internal class ProductB2 : AbstractProductB
 {
     public override void Interact(AbstractProductA a)
     {
@@ -116,7 +117,7 @@ class ProductB2 : AbstractProductB
 /// <summary>
 /// The 'Client' class. Interaction environment for the products.
 /// </summary>
-class Client
+internal class Client
 {
     private AbstractProductA _abstractProductA;
     private AbstractProductB _abstractProductB;

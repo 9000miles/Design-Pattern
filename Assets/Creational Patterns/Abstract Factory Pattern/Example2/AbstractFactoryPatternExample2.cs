@@ -8,17 +8,15 @@
 
 // negative: can get very complicated
 
-
 using UnityEngine;
 using System.Collections;
 
 namespace AbstractFactoryPatternExample2
 {
-
     public class AbstractFactoryPatternExample2 : MonoBehaviour
     {
-	    void Start ( )
-	    {
+        private void Start()
+        {
             EnemyShipBuilding ufoBuilder = new UFOEnemyShipBuilding();
             ufoBuilder.orderShip(ShipType.UFO);
         }
@@ -28,7 +26,6 @@ namespace AbstractFactoryPatternExample2
     {
         UFO
     }
-
 
     public abstract class EnemyShipBuilding
     {
@@ -66,13 +63,10 @@ namespace AbstractFactoryPatternExample2
         }
     }
 
-
-
-
-
     public interface IEnemyShipFactory
     {
         IESWeapon AddESGun();
+
         IESEngine AddESEngine();
     }
 
@@ -89,10 +83,6 @@ namespace AbstractFactoryPatternExample2
             return new ESUFOEngine();
         }
     }
-
-
-
-
 
     public abstract class EnemyShip
     {
@@ -125,7 +115,7 @@ namespace AbstractFactoryPatternExample2
 
     public class UFOEnemyShip : EnemyShip
     {
-        IEnemyShipFactory factory;
+        private IEnemyShipFactory factory;
 
         public UFOEnemyShip(IEnemyShipFactory factory)
         {
@@ -139,8 +129,6 @@ namespace AbstractFactoryPatternExample2
             engine = factory.AddESEngine();
         }
     }
-
-
 
     // possible Weapons to swap in and out
     public interface IESWeapon
@@ -160,6 +148,7 @@ namespace AbstractFactoryPatternExample2
             return "20 damage";
         }
     }
+
     public class ESUFOEngine : IESEngine
     {
         public string ToStringEX()
@@ -167,7 +156,4 @@ namespace AbstractFactoryPatternExample2
             return "1000 mph";
         }
     }
-
-
 }
-

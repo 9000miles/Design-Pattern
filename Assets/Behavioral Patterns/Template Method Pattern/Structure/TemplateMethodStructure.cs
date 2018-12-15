@@ -7,23 +7,23 @@ using System.Collections;
 
 public class TemplateMethodStructure : MonoBehaviour
 {
-	void Start ( )
-	{
+    private void Start()
+    {
         AbstractClass aA = new ConcreteClassA();
         aA.TemplateMethod();
 
         AbstractClass aB = new ConcreteClassB();
         aB.TemplateMethod();
-
     }
 }
 
 /// <summary>
 /// The 'AbstractClass' abstract class
 /// </summary>
-abstract class AbstractClass
+internal abstract class AbstractClass
 {
     public abstract void PrimitiveOperation1();
+
     public abstract void PrimitiveOperation2();
 
     // The "Template method"
@@ -38,12 +38,13 @@ abstract class AbstractClass
 /// <summary>
 /// A 'ConcreteClass' class
 /// </summary>
-class ConcreteClassA : AbstractClass
+internal class ConcreteClassA : AbstractClass
 {
     public override void PrimitiveOperation1()
     {
         Debug.Log("ConcreteClassA.PrimitiveOperation1()");
     }
+
     public override void PrimitiveOperation2()
     {
         Debug.Log("ConcreteClassA.PrimitiveOperation2()");
@@ -53,12 +54,13 @@ class ConcreteClassA : AbstractClass
 /// <summary>
 /// A 'ConcreteClass' class
 /// </summary>
-class ConcreteClassB : AbstractClass
+internal class ConcreteClassB : AbstractClass
 {
     public override void PrimitiveOperation1()
     {
         Debug.Log("ConcreteClassB.PrimitiveOperation1()");
     }
+
     public override void PrimitiveOperation2()
     {
         Debug.Log("ConcreteClassB.PrimitiveOperation2()");

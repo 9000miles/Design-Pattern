@@ -10,7 +10,7 @@ namespace VisitorPatternExample2
 {
     public class VisitorPatternExample2 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             // Setup employee collection
             Employees e = new Employees();
@@ -23,11 +23,10 @@ namespace VisitorPatternExample2
             e.Accept(new VacationVisitor());
         }
 
-
         /// <summary>
         /// The 'Visitor' interface
         /// </summary>
-        interface IVisitor
+        private interface IVisitor
         {
             void Visit(Element element);
         }
@@ -35,7 +34,7 @@ namespace VisitorPatternExample2
         /// <summary>
         /// A 'ConcreteVisitor' class
         /// </summary>
-        class IncomeVisitor : IVisitor
+        private class IncomeVisitor : IVisitor
         {
             public void Visit(Element element)
             {
@@ -53,7 +52,7 @@ namespace VisitorPatternExample2
         /// <summary>
         /// A 'ConcreteVisitor' class
         /// </summary>
-        class VacationVisitor : IVisitor
+        private class VacationVisitor : IVisitor
         {
             public void Visit(Element element)
             {
@@ -70,7 +69,7 @@ namespace VisitorPatternExample2
         /// <summary>
         /// The 'Element' abstract class
         /// </summary>
-        abstract class Element
+        private abstract class Element
         {
             public abstract void Accept(IVisitor visitor);
         }
@@ -78,7 +77,7 @@ namespace VisitorPatternExample2
         /// <summary>
         /// The 'ConcreteElement' class
         /// </summary>
-        class Employee : Element
+        private class Employee : Element
         {
             private string _name;
             private double _income;
@@ -123,7 +122,7 @@ namespace VisitorPatternExample2
         /// <summary>
         /// The 'ObjectStructure' class
         /// </summary>
-        class Employees
+        private class Employees
         {
             private List<Employee> _employees = new List<Employee>();
 
@@ -148,7 +147,7 @@ namespace VisitorPatternExample2
 
         // Three employee types
 
-        class Clerk : Employee
+        private class Clerk : Employee
         {
             // Constructor
             public Clerk()
@@ -157,7 +156,7 @@ namespace VisitorPatternExample2
             }
         }
 
-        class Director : Employee
+        private class Director : Employee
         {
             // Constructor
             public Director()
@@ -166,7 +165,7 @@ namespace VisitorPatternExample2
             }
         }
 
-        class President : Employee
+        private class President : Employee
         {
             // Constructor
             public President()
@@ -174,10 +173,5 @@ namespace VisitorPatternExample2
             {
             }
         }
-
-
-
     }
-
 }
-

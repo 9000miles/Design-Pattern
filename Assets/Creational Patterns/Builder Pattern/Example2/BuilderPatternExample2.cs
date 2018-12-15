@@ -9,7 +9,7 @@ namespace BuilderPatternExample2
 {
     public class BuilderPatternExample2 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             IRobotBuilder oldRobot = new OldRobotBuilder();
             RobotEngineer engineer = new RobotEngineer(oldRobot);
@@ -65,16 +65,17 @@ namespace BuilderPatternExample2
         }
     }
 
-
-
-
     // they're kinda like a blueprint these RobotBuilder classes:
     public interface IRobotBuilder
     {
         Robot GetRobot();
+
         void BuildRobotHead();
+
         void BuildRobotTorso();
+
         void BuildRobotArms();
+
         void BuildRobotLegs();
     }
 
@@ -114,8 +115,6 @@ namespace BuilderPatternExample2
         }
     }
 
-
-
     // he just calls the method in the Robot Objects (which are defined by the interface, just think of blueprints)
     public class RobotEngineer
     {
@@ -139,6 +138,4 @@ namespace BuilderPatternExample2
             this.robotBuilder.BuildRobotLegs();
         }
     }
-
-
 }

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class VisitorStructure : MonoBehaviour
 {
-	void Start ( )
+    private void Start()
     {
         // Setup structure
         ObjectStructure o = new ObjectStructure();
@@ -28,20 +28,21 @@ public class VisitorStructure : MonoBehaviour
 /// <summary>
 /// The 'Visitor' abstract class
 /// </summary>
-abstract class Visitor
+internal abstract class Visitor
 {
     public abstract void VisitConcreteElementA(ConcreteElementA concreteElementA);
+
     public abstract void VisitConcreteElementB(ConcreteElementB concreteElementB);
 }
 
 /// <summary>
 /// A 'ConcreteVisitor' class
 /// </summary>
-class ConcreteVisitor1 : Visitor
+internal class ConcreteVisitor1 : Visitor
 {
     public override void VisitConcreteElementA(ConcreteElementA concreteElementA)
     {
-        Debug.Log(concreteElementA.GetType().Name+" visited by "+this.GetType().Name);
+        Debug.Log(concreteElementA.GetType().Name + " visited by " + this.GetType().Name);
     }
 
     public override void VisitConcreteElementB(ConcreteElementB concreteElementB)
@@ -53,7 +54,7 @@ class ConcreteVisitor1 : Visitor
 /// <summary>
 /// A 'ConcreteVisitor' class
 /// </summary>
-class ConcreteVisitor2 : Visitor
+internal class ConcreteVisitor2 : Visitor
 {
     public override void VisitConcreteElementA(ConcreteElementA concreteElementA)
     {
@@ -69,7 +70,7 @@ class ConcreteVisitor2 : Visitor
 /// <summary>
 /// The 'Element' abstract class
 /// </summary>
-abstract class Element
+internal abstract class Element
 {
     public abstract void Accept(Visitor visitor);
 }
@@ -77,7 +78,7 @@ abstract class Element
 /// <summary>
 /// A 'ConcreteElement' class
 /// </summary>
-class ConcreteElementA : Element
+internal class ConcreteElementA : Element
 {
     public override void Accept(Visitor visitor)
     {
@@ -92,7 +93,7 @@ class ConcreteElementA : Element
 /// <summary>
 /// A 'ConcreteElement' class
 /// </summary>
-class ConcreteElementB : Element
+internal class ConcreteElementB : Element
 {
     public override void Accept(Visitor visitor)
     {
@@ -107,7 +108,7 @@ class ConcreteElementB : Element
 /// <summary>
 /// The 'ObjectStructure' class
 /// </summary>
-class ObjectStructure
+internal class ObjectStructure
 {
     private List<Element> _elements = new List<Element>();
 
@@ -129,4 +130,3 @@ class ObjectStructure
         }
     }
 }
- 

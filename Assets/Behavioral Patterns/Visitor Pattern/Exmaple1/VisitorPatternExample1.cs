@@ -2,7 +2,7 @@
 //	VisitorPatternExample1.cs
 //-------------------------------------------------------------------------------------
 
-//This real-world code demonstrates the Visitor pattern in which two objects traverse a list of Employees and performs the same operation on each Employee. 
+//This real-world code demonstrates the Visitor pattern in which two objects traverse a list of Employees and performs the same operation on each Employee.
 //The two visitor objects define different operations -- one adjusts vacation days and the other income.
 
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace VisitorPatternExample1
 {
     public class VisitorPatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             // Setup employee collection
             Employees e = new Employees();
@@ -24,14 +24,13 @@ namespace VisitorPatternExample1
             // Employees are 'visited'
             e.Accept(new IncomeVisitor());
             e.Accept(new VacationVisitor());
-
         }
     }
 
     /// <summary>
     /// The 'Visitor' interface
     /// </summary>
-    interface IVisitor
+    internal interface IVisitor
     {
         void Visit(Element element);
     }
@@ -39,7 +38,7 @@ namespace VisitorPatternExample1
     /// <summary>
     /// A 'ConcreteVisitor' class
     /// </summary>
-    class IncomeVisitor : IVisitor
+    internal class IncomeVisitor : IVisitor
     {
         public void Visit(Element element)
         {
@@ -47,14 +46,14 @@ namespace VisitorPatternExample1
 
             // Provide 10% pay raise
             employee.Income *= 1.10;
-            Debug.Log(employee.GetType().Name+" "+ employee.Name+"'s new income: "+employee.Income);
+            Debug.Log(employee.GetType().Name + " " + employee.Name + "'s new income: " + employee.Income);
         }
     }
 
     /// <summary>
     /// A 'ConcreteVisitor' class
     /// </summary>
-    class VacationVisitor : IVisitor
+    internal class VacationVisitor : IVisitor
     {
         public void Visit(Element element)
         {
@@ -69,7 +68,7 @@ namespace VisitorPatternExample1
     /// <summary>
     /// The 'Element' abstract class
     /// </summary>
-    abstract class Element
+    internal abstract class Element
     {
         public abstract void Accept(IVisitor visitor);
     }
@@ -77,7 +76,7 @@ namespace VisitorPatternExample1
     /// <summary>
     /// The 'ConcreteElement' class
     /// </summary>
-    class Employee : Element
+    internal class Employee : Element
     {
         private string _name;
         private double _income;
@@ -122,7 +121,7 @@ namespace VisitorPatternExample1
     /// <summary>
     /// The 'ObjectStructure' class
     /// </summary>
-    class Employees
+    internal class Employees
     {
         private List<Employee> _employees = new List<Employee>();
 
@@ -147,7 +146,7 @@ namespace VisitorPatternExample1
 
     // Three employee types
 
-    class Clerk : Employee
+    internal class Clerk : Employee
     {
         // Constructor
         public Clerk()
@@ -156,7 +155,7 @@ namespace VisitorPatternExample1
         }
     }
 
-    class Director : Employee
+    internal class Director : Employee
     {
         // Constructor
         public Director()
@@ -165,7 +164,7 @@ namespace VisitorPatternExample1
         }
     }
 
-    class President : Employee
+    internal class President : Employee
     {
         // Constructor
         public President()

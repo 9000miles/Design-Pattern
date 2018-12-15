@@ -5,7 +5,7 @@
 using UnityEngine;
 using System.Collections;
 
-/* 
+/*
  Used to create a group of sublcasses that have to execute a similar group of methods
  You create an abstract class that contains a method called the Template Method
  The Template method contains a series of method calls that every sublcass object will call
@@ -14,10 +14,9 @@ using System.Collections;
 
 namespace TemplateMethodPatternExample1
 {
-
     public class TemplateMethodPatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             Hoagie cust12Hoagie = new ItalienHoagie();
             cust12Hoagie.MakeSandwich();
@@ -57,15 +56,34 @@ namespace TemplateMethodPatternExample1
 
             WrapTheHoagie();
         }
+
         protected abstract void AddMeat();
+
         protected abstract void AddCheese();
+
         protected abstract void AddVegetables();
+
         protected abstract void AddCondiments();
 
-        protected virtual bool CustomerWantsMeat() { return true; } // << called Hook
-        protected virtual bool CustomerWantsCheese() { return true; }
-        protected virtual bool CustomerWantsVegetables() { return true; }
-        protected virtual bool CustomerWantsCondiments() { return true; }
+        protected virtual bool CustomerWantsMeat()
+        {
+            return true;
+        } // << called Hook
+
+        protected virtual bool CustomerWantsCheese()
+        {
+            return true;
+        }
+
+        protected virtual bool CustomerWantsVegetables()
+        {
+            return true;
+        }
+
+        protected virtual bool CustomerWantsCondiments()
+        {
+            return true;
+        }
 
         protected void CutBun()
         {
@@ -77,7 +95,6 @@ namespace TemplateMethodPatternExample1
             Debug.Log("Hoagie is wrapped.");
         }
     }
-
 
     public class ItalienHoagie : Hoagie
     {
@@ -102,8 +119,6 @@ namespace TemplateMethodPatternExample1
         }
     }
 
-
-
     public class VeggieHoagie : Hoagie
     {
         protected override void AddMeat()
@@ -124,11 +139,16 @@ namespace TemplateMethodPatternExample1
             Debug.Log("Adding the Condiments: Vinegar");
         }
 
-        protected override bool CustomerWantsMeat() { return false; }
-        protected override bool CustomerWantsCheese() { return false; }
+        protected override bool CustomerWantsMeat()
+        {
+            return false;
+        }
 
+        protected override bool CustomerWantsCheese()
+        {
+            return false;
+        }
     }
-
 
     namespace BadExample
     {

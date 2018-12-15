@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class BuilderStructure : MonoBehaviour
 {
-	void Start ( )
+    private void Start()
     {
         // Create director and builders
         Director director = new Director();
@@ -30,7 +30,7 @@ public class BuilderStructure : MonoBehaviour
 /// <summary>
 /// The 'Director' class
 /// </summary>
-class Director
+internal class Director
 {
     // Builder uses a complex series of steps
     public void Construct(Builder builder)
@@ -43,17 +43,19 @@ class Director
 /// <summary>
 /// The 'Builder' abstract class
 /// </summary>
-abstract class Builder
+internal abstract class Builder
 {
     public abstract void BuildPartA();
+
     public abstract void BuildPartB();
+
     public abstract Product GetResult();
 }
 
 /// <summary>
 /// The 'ConcreteBuilder1' class
 /// </summary>
-class ConcreteBuilder1 : Builder
+internal class ConcreteBuilder1 : Builder
 {
     private Product _product = new Product();
 
@@ -76,7 +78,7 @@ class ConcreteBuilder1 : Builder
 /// <summary>
 /// The 'ConcreteBuilder2' class
 /// </summary>
-class ConcreteBuilder2 : Builder
+internal class ConcreteBuilder2 : Builder
 {
     private Product _product = new Product();
 
@@ -99,7 +101,7 @@ class ConcreteBuilder2 : Builder
 /// <summary>
 /// The 'Product' class
 /// </summary>
-class Product
+internal class Product
 {
     private List<string> _parts = new List<string>();
 
@@ -110,11 +112,10 @@ class Product
 
     public void Show()
     {
-      Debug.Log("\nProduct Parts -------");
+        Debug.Log("\nProduct Parts -------");
         foreach (string part in _parts)
         {
             Debug.Log(part);
         }
-
     }
 }
