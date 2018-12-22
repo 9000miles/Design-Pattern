@@ -10,17 +10,17 @@ namespace DataLocalityPatternExample
 {
     public class DataLocalityPatternExample : MonoBehaviour
     {
-        GameX gameProject;
+        private GameX gameProject;
 
-        void Start()
+        private void Start()
         {
             gameProject = new GameX();
             gameProject.Start();
         }
 
-        void Update()
+        private void Update()
         {
-            if (gameProject!=null)
+            if (gameProject != null)
             {
                 gameProject.Update();
             }
@@ -32,16 +32,16 @@ namespace DataLocalityPatternExample
     /// </summary>
     public class GameX
     {
-        const int MAX_ENTITIES = 10000;
+        private const int MAX_ENTITIES = 10000;
 
-        int numEntities;
+        private int numEntities;
 
         /// <summary>
         /// 基于大数组存储保证数据连续性
         /// </summary>
-        AIComponent[] aiComponents = new AIComponent[MAX_ENTITIES];
-        PhysicsComponent[] physicsComponents = new PhysicsComponent[MAX_ENTITIES];
-        RenderComponent[] renderComponents = new RenderComponent[MAX_ENTITIES];
+        private AIComponent[] aiComponents = new AIComponent[MAX_ENTITIES];
+        private PhysicsComponent[] physicsComponents = new PhysicsComponent[MAX_ENTITIES];
+        private RenderComponent[] renderComponents = new RenderComponent[MAX_ENTITIES];
 
         public void Start()
         {
@@ -52,16 +52,14 @@ namespace DataLocalityPatternExample
                 physicsComponents[i] = new PhysicsComponent();
                 renderComponents[i] = new RenderComponent();
             }
-
         }
-
 
         public void Update()
         {
             // Process AI.
             for (int i = 0; i < numEntities; i++)
             {
-                if (aiComponents!=null && aiComponents.Length>i && aiComponents[i]!= null)
+                if (aiComponents != null && aiComponents.Length > i && aiComponents[i] != null)
                 {
                     aiComponents[i].Update();
                 }
@@ -74,7 +72,6 @@ namespace DataLocalityPatternExample
                 {
                     physicsComponents[i].Update();
                 }
-
             }
 
             // Draw to screen.
@@ -86,8 +83,6 @@ namespace DataLocalityPatternExample
                 }
             }
         }
-
-
 
         /// <summary>
         /// 组件接口
@@ -129,12 +124,10 @@ namespace DataLocalityPatternExample
                 Debug.Log("RenderComponent Update!");
             }
 
-
             public void Render()
             {
                 Debug.Log("RenderComponent Render!");
             }
         }
-
     }
-    }
+}

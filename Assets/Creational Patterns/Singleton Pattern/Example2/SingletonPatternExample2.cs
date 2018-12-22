@@ -9,12 +9,12 @@ namespace SingletonPatternExample2
 {
     public class SingletonPatternExample2 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             RenderManager.Instance.Show();
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -22,7 +22,6 @@ namespace SingletonPatternExample2
             }
         }
     }
-
 
     /// <summary>
     /// 某单例manager
@@ -50,8 +49,4 @@ namespace SingletonPatternExample2
             Debug.Log("RenderManager is a Singleton !");
         }
     }
-
-
-
-
 }

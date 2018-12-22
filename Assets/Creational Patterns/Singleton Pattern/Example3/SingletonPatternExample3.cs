@@ -7,10 +7,9 @@ using System.Collections;
 
 namespace SingletonPatternExample3
 {
-
     public class SingletonPatternExample3 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             //单例A
             SingletonA.Instance.DoSomething();
@@ -18,15 +17,13 @@ namespace SingletonPatternExample3
             //单例B
             SingletonB.Instance.DoSomething();
         }
-
     }
 
     /// <summary>
     /// 单例类基类（抽象类、泛型，其他类只需继承此类即可成为单例类）
     /// 继承该类的，即成为一个单例类
     /// </summary>
-    public abstract class Singleton<T>
-        where T : class, new()
+    public abstract class Singleton<T> where T : class, new()
     {
         private static T _instance = null;
 
@@ -49,7 +46,6 @@ namespace SingletonPatternExample3
         }
     }
 
-
     /// <summary>
     /// 继承自Singleton<T>的单例
     /// </summary>
@@ -71,6 +67,4 @@ namespace SingletonPatternExample3
             Debug.Log("SingletonB:DoSomething!");
         }
     }
-
-
 }

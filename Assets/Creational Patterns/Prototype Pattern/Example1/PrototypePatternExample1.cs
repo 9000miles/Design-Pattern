@@ -13,7 +13,7 @@ namespace PrototypePatternExample1
 {
     public class PrototypePatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             ColorManager colormanager = new ColorManager();
 
@@ -31,14 +31,13 @@ namespace PrototypePatternExample1
             Color color1 = colormanager["red"].Clone() as Color;
             Color color2 = colormanager["peace"].Clone() as Color;
             Color color3 = colormanager["flame"].Clone() as Color;
-
         }
     }
 
     /// <summary>
     /// The 'Prototype' abstract class
     /// </summary>
-    abstract class ColorPrototype
+    internal abstract class ColorPrototype
     {
         public abstract ColorPrototype Clone();
     }
@@ -46,7 +45,7 @@ namespace PrototypePatternExample1
     /// <summary>
     /// The 'ConcretePrototype' class
     /// </summary>
-    class Color : ColorPrototype
+    internal class Color : ColorPrototype
     {
         private int _red;
         private int _green;
@@ -72,7 +71,7 @@ namespace PrototypePatternExample1
     /// <summary>
     /// Prototype manager
     /// </summary>
-    class ColorManager
+    internal class ColorManager
     {
         private Dictionary<string, ColorPrototype> _colors = new Dictionary<string, ColorPrototype>();
 

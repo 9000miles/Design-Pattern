@@ -8,8 +8,7 @@ using System.Collections.Generic;
 
 public class SingletonStructure : MonoBehaviour
 {
-
-    void Start()
+    private void Start()
     {
         // Constructor is protected -- cannot use new
         Singleton s1 = Singleton.Instance();
@@ -26,12 +25,12 @@ public class SingletonStructure : MonoBehaviour
 /// <summary>
 /// The 'Singleton' class
 /// </summary>
-class Singleton
+internal class Singleton
 {
     private static Singleton _instance;
 
     // Constructor is 'protected'
-    protected Singleton()
+    private Singleton()
     {
     }
 

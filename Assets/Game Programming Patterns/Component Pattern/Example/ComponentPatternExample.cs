@@ -8,17 +8,16 @@ using System.Collections.Generic;
 
 namespace ComponentPatternExample
 {
-
     public class ComponentPatternExample : MonoBehaviour
     {
-        RPGGame rpgGame = new RPGGame();
+        private RPGGame rpgGame = new RPGGame();
 
-        void Start()
+        private void Start()
         {
             rpgGame.Start();
         }
 
-        void Update()
+        private void Update()
         {
             rpgGame.Update();
         }
@@ -27,7 +26,7 @@ namespace ComponentPatternExample
     /// <summary>
     /// 游戏类
     /// </summary>
-    class RPGGame
+    internal class RPGGame
     {
         public int velocity;
         public int x = 0, y = 0;
@@ -44,7 +43,7 @@ namespace ComponentPatternExample
         //组件List
         public List<BaseComponent> ComponentList = new List<BaseComponent>();
         //组件List容量
-        int componentAmount = -1;
+        private int componentAmount = -1;
 
         public void Start()
         {
@@ -77,7 +76,7 @@ namespace ComponentPatternExample
     /// <summary>
     /// 输入组件
     /// </summary>
-    class PlayerInputComponent : InputComponent
+    internal class PlayerInputComponent : InputComponent
     {
         public void Update(RPGGame game)
         {
@@ -96,26 +95,23 @@ namespace ComponentPatternExample
         private int WALK_ACCELERATION = 1;
     }
 
-
     /// <summary>
     /// 物理组件
     /// </summary>
-    class PlayerPhysicsComponent : PhysicsComponent
+    internal class PlayerPhysicsComponent : PhysicsComponent
     {
         public void Update(RPGGame game)
         {
             game.x += game.velocity;
 
             //Handle Physics...
-
         }
     }
-
 
     /// <summary>
     /// 图形组件
     /// </summary>
-    class PlayerGraphicsComponent : GraphicsComponent
+    internal class PlayerGraphicsComponent : GraphicsComponent
     {
         public void Update(RPGGame game)
         {
@@ -136,8 +132,6 @@ namespace ComponentPatternExample
                 sprite = spriteWalkRight;
             }
             game.graphicsX.Draw(sprite, game.x, game.y);
-
-
         }
 
         private Sprite spriteStand;
@@ -147,40 +141,40 @@ namespace ComponentPatternExample
 
     #region interfaces
 
-    interface BaseComponent
+    internal interface BaseComponent
     {
         void Update(RPGGame game);
     }
 
-    interface GraphicsComponent : BaseComponent
+    internal interface GraphicsComponent : BaseComponent
     {
         new void Update(RPGGame game);
     }
 
-    interface PhysicsComponent : BaseComponent
+    internal interface PhysicsComponent : BaseComponent
     {
         new void Update(RPGGame game);
     }
 
-    interface InputComponent : BaseComponent
+    internal interface InputComponent : BaseComponent
     {
         new void Update(RPGGame game);
     }
 
-    #endregion
+    #endregion interfaces
 
     #region 辅助类
 
-    class WorldX
+    internal class WorldX
     {
-
     }
 
-    class GraphicsX
+    internal class GraphicsX
     {
-        public void Draw(Sprite sprite, float x, float y) { }
+        public void Draw(Sprite sprite, float x, float y)
+        {
+        }
     }
 }
 
-# endregion
-
+#endregion 辅助类

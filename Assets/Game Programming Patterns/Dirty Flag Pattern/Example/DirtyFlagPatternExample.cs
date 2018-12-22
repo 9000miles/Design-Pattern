@@ -10,9 +10,10 @@ namespace DirtyFlagPatternExample
 {
     public class DirtyFlagPatternExample : MonoBehaviour
     {
-        GraphNode graphNode = new GraphNode(new MeshEX());
-        TransformEX parentWorldTransform = new TransformEX();
-        void Start()
+        private GraphNode graphNode = new GraphNode(new MeshEX());
+        private TransformEX parentWorldTransform = new TransformEX();
+
+        private void Start()
         {
             //初始化子节点
             for (int i = 0; i < graphNode.NumChildren; i++)
@@ -23,7 +24,7 @@ namespace DirtyFlagPatternExample
             graphNode.render(TransformEX.origin, true);
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -41,15 +42,14 @@ namespace DirtyFlagPatternExample
     /// <summary>
     /// 网格类
     /// </summary>
-    class MeshEX
+    internal class MeshEX
     {
-
     }
 
     /// <summary>
     /// 位置类
     /// </summary>
-    class TransformEX
+    internal class TransformEX
     {
         private Vector3 position = new Vector3(1, 1, 1);
         public Vector3 Position
@@ -62,7 +62,6 @@ namespace DirtyFlagPatternExample
 
         public TransformEX combine(TransformEX other)
         {
-
             TransformEX trans = new TransformEX();
             if (other != null)
             {
@@ -70,13 +69,12 @@ namespace DirtyFlagPatternExample
             }
             return trans;
         }
-
     };
 
     /// <summary>
     /// 场景图节点
     /// </summary>
-    class GraphNode
+    internal class GraphNode
     {
         //脏标记 dirty flag
         private bool dirty_;
@@ -84,7 +82,7 @@ namespace DirtyFlagPatternExample
         private MeshEX mesh_;
         private TransformEX local_;
         private TransformEX world_ = new TransformEX();
-        const int MAX_CHILDREN = 100;
+        private const int MAX_CHILDREN = 100;
 
         /// <summary>
         /// 子节点
@@ -111,7 +109,6 @@ namespace DirtyFlagPatternExample
             mesh_ = mesh;
             local_ = TransformEX.origin;
             dirty_ = true;
-
         }
 
         /// <summary>
@@ -151,7 +148,6 @@ namespace DirtyFlagPatternExample
                 {
                     children_[i].render(world_, dirty);
                 }
-
             }
         }
 
@@ -163,6 +159,4 @@ namespace DirtyFlagPatternExample
             Debug.Log("renderMesh!");
         }
     }
-
 }
-

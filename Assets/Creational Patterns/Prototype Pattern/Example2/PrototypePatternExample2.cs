@@ -10,10 +10,10 @@ namespace PrototypePatternExample2
 {
     public class PrototypePatternExample2 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             CloneFactory factory = new CloneFactory();
-            
+
             Sheep sally = new Sheep();
 
             Sheep clonedSheep = (Sheep)factory.GetClone(sally);
@@ -22,7 +22,6 @@ namespace PrototypePatternExample2
             Debug.Log("Clone of Sally: " + clonedSheep.ToStringEX());
             Debug.Log("Sally Hash: " + sally.GetHashCode() + " - Cloned Sheep Hash: " + clonedSheep.GetHashCode());
         }
-
     }
 
     public class CloneFactory
@@ -35,7 +34,7 @@ namespace PrototypePatternExample2
 
     public interface IAnimal : ICloneable
     {
-        object Clone();
+        new object Clone();
     }
 
     public class Sheep : IAnimal
@@ -66,6 +65,4 @@ namespace PrototypePatternExample2
             return "Hello I'm a Sheep";
         }
     }
-
 }
-

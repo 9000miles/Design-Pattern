@@ -7,14 +7,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-//This real-world code demonstrates the Singleton pattern as a LoadBalancing object. Only a single instance (the singleton) of the class can be created 
+//This real-world code demonstrates the Singleton pattern as a LoadBalancing object. Only a single instance (the singleton) of the class can be created
 //because servers may dynamically come on- or off-line and every request must go throught the one object that has knowledge about the state of the (web) farm.
 
 namespace SingletonPatternExample1
 {
     public class SingletonPatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             LoadBalancer b1 = LoadBalancer.GetLoadBalancer();
             LoadBalancer b2 = LoadBalancer.GetLoadBalancer();
@@ -40,7 +40,7 @@ namespace SingletonPatternExample1
     /// <summary>
     /// The 'Singleton' class
     /// </summary>
-    class LoadBalancer
+    internal class LoadBalancer
     {
         private static LoadBalancer _instance;
         private List<string> _servers = new List<string>();

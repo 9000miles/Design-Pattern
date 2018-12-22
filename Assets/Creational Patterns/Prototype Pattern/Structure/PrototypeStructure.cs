@@ -7,28 +7,30 @@ using System.Collections;
 
 public class PrototypeStructure : MonoBehaviour
 {
-
-    void Start( )
+    private void Start()
     {
         // Create two instances and clone each
 
         ConcretePrototype1 p1 = new ConcretePrototype1("I");
+        p1.nameNo = "p1";
         ConcretePrototype1 c1 = (ConcretePrototype1)p1.Clone();
-        Debug.Log("Cloned: "+c1.Id);
+        c1.nameNo = "c1";
+        Debug.Log("Cloned: " + c1.Id);
+        Debug.Log("NameNo: " + p1.nameNo + " -------  " + c1.nameNo);
 
         ConcretePrototype2 p2 = new ConcretePrototype2("II");
         ConcretePrototype2 c2 = (ConcretePrototype2)p2.Clone();
-        Debug.Log("Cloned: "+c2.Id);
-
+        Debug.Log("Cloned: " + c2.Id);
     }
 }
 
 /// <summary>
 /// The 'Prototype' abstract class
 /// </summary>
-abstract class Prototype
+internal abstract class Prototype
 {
     private string _id;
+    public string nameNo;
 
     // Constructor
     public Prototype(string id)
@@ -46,9 +48,9 @@ abstract class Prototype
 }
 
 /// <summary>
-/// A 'ConcretePrototype' class 
+/// A 'ConcretePrototype' class
 /// </summary>
-class ConcretePrototype1 : Prototype
+internal class ConcretePrototype1 : Prototype
 {
     // Constructor
     public ConcretePrototype1(string id)
@@ -64,9 +66,9 @@ class ConcretePrototype1 : Prototype
 }
 
 /// <summary>
-/// A 'ConcretePrototype' class 
+/// A 'ConcretePrototype' class
 /// </summary>
-class ConcretePrototype2 : Prototype
+internal class ConcretePrototype2 : Prototype
 {
     // Constructor
     public ConcretePrototype2(string id)
