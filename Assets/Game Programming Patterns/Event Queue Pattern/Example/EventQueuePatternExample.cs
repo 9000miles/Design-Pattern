@@ -15,7 +15,7 @@ namespace EventQueuePatternExample
     {
         private Dictionary<MessagePriority, string> priorityLookup = new Dictionary<MessagePriority, string>();
 
-        void Start()
+        private void Start()
         {
             //添加优先级
             priorityLookup.Add(MessagePriority.Low, "Low");
@@ -23,7 +23,7 @@ namespace EventQueuePatternExample
             priorityLookup.Add(MessagePriority.High, "High");
         }
 
-        void Update()
+        private void Update()
         {
             //按钮响应
             if (Input.GetMouseButtonDown(0))
@@ -41,7 +41,7 @@ namespace EventQueuePatternExample
                 }
 
                 //随机选取显示时间
-                float showTime = UnityEngine.Random.Range(1f, 5f);
+                float showTime = UnityEngine.Random.Range(1f, 15f);
 
                 //加入事件到队列
                 EventQueueManager.Instance.AddEventToQueue(new MessageEvent(priorityLookup[priority] + " priority message shown at "

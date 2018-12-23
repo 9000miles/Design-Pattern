@@ -13,6 +13,8 @@ namespace DirtyFlagPatternExample
         private GraphNode graphNode = new GraphNode(new MeshEX());
         private TransformEX parentWorldTransform = new TransformEX();
 
+        private string age;
+
         private void Start()
         {
             //初始化子节点
@@ -79,7 +81,7 @@ namespace DirtyFlagPatternExample
         //脏标记 dirty flag
         private bool dirty_;
 
-        private MeshEX mesh_;
+        private readonly MeshEX _mesh;
         private TransformEX local_;
         private TransformEX world_ = new TransformEX();
         private const int MAX_CHILDREN = 100;
@@ -106,7 +108,7 @@ namespace DirtyFlagPatternExample
 
         public GraphNode(MeshEX mesh)
         {
-            mesh_ = mesh;
+            _mesh = mesh;
             local_ = TransformEX.origin;
             dirty_ = true;
         }
@@ -137,9 +139,9 @@ namespace DirtyFlagPatternExample
             }
 
             //渲染mesh
-            if (mesh_ != null)
+            if (_mesh != null)
             {
-                renderMesh(mesh_, world_);
+                renderMesh(_mesh, world_);
             }
 
             for (int i = 0; i < numChildren_; i++)

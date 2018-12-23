@@ -9,10 +9,8 @@ using System.Collections.Generic;
 
 namespace EventQueuePatternExample
 {
-
     public class EventQueue : MonoBehaviour
     {
-
         #region 事件队列相关
 
         /// <summary>
@@ -23,26 +21,26 @@ namespace EventQueuePatternExample
         /// <summary>
         /// 事件投递函数
         /// </summary>
-        void OnAddEventToQueue(IMessageEvent e)
+        private void OnAddEventToQueue(IMessageEvent e)
         {
             pendingEventQueueList.Add(e);
 
             if (logToConsole)
             {
-                Debug.Log("Message Recieved [" + System.DateTime.Now + "]: " + e.message.ToString());
+                Debug.Log("Message Recieved [" + System.DateTime.Now + "]: " + e.Message.ToString());
             }
         }
 
-        void Update()
+        private void Update()
         {
             for (int i = pendingEventQueueList.Count - 1; i >= 0; i--)
             {
-                if (Time.time > pendingEventQueueList[i].displayTime)
+                if (Time.time > pendingEventQueueList[i].DisplayTime)
                     pendingEventQueueList.RemoveAt(i);
             }
         }
 
-        void Start()
+        private void Start()
         {
             if (pendingEventQueueList.Count > 0)
             {
@@ -52,24 +50,21 @@ namespace EventQueuePatternExample
             EventQueueManager.Instance.AddListener<MessageEvent>(OnAddEventToQueue);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             EventQueueManager.Instance.RemoveListener<MessageEvent>(OnAddEventToQueue);
         }
 
-        #endregion
-
-
+        #endregion 事件队列相关
 
         #region UI显示相关
 
-        void OnEnable()
+        private void OnEnable()
         {
             SetUIStyle();
         }
 
-
-        void SetUIStyle()
+        private void SetUIStyle()
         {
             LOW_PRIORTY.normal.textColor = lowPriorityColour;
             LOW_PRIORTY.fontStyle = lowPriorityStyle;
@@ -85,35 +80,30 @@ namespace EventQueuePatternExample
         public bool prependDateTime = false;
 
         [Header("Message Colours")]
-        public Color
-            highPriorityColour = Color.red;
+        public Color highPriorityColour = Color.red;
         public Color normalPriorityColour = Color.black;
         public Color lowPriorityColour = Color.white;
 
         [Header("Message Font Style")]
-        public FontStyle
-            highPriorityStyle = FontStyle.Bold;
+        public FontStyle highPriorityStyle = FontStyle.Bold;
         public FontStyle normalPriorityStyle = FontStyle.Normal;
         public FontStyle lowPriorityStyle = FontStyle.Normal;
 
         [Header("Message Location")]
-        public Vector2
-            queueLocation = new Vector2(25, 25);
+        public Vector2 queueLocation = new Vector2(25, 25);
         public Vector2 messageSize = new Vector2(200, 15);
 
         private static readonly GUIStyle LOW_PRIORTY = new GUIStyle(), NORMAL_PRIORITY = new GUIStyle(), HIGH_PRIORITY = new GUIStyle();
 
-
-        void OnGUI()
+        private void OnGUI()
         {
             float yPos = queueLocation.y;
 
             foreach (var m in pendingEventQueueList)
             {
-
                 GUIStyle style = GetMessageStyle(m);
 
-                string message = (prependDateTime) ? "[" + m.timeRaised + "]: " + m.message.ToString() : m.message.ToString();
+                string message = (prependDateTime) ? "[" + m.TimeRaised + "]: " + m.Message.ToString() : m.Message.ToString();
 
                 GUI.Label(new Rect(queueLocation.x, yPos, messageSize.x, messageSize.y), message, style);
 
@@ -121,9 +111,9 @@ namespace EventQueuePatternExample
             }
         }
 
-        GUIStyle GetMessageStyle(IMessageEvent e)
+        private GUIStyle GetMessageStyle(IMessageEvent e)
         {
-            switch (e.priority)
+            switch (e.Priority)
             {
                 case MessagePriority.Low:
                     return LOW_PRIORTY;
@@ -132,10 +122,8 @@ namespace EventQueuePatternExample
                 default:
                     return HIGH_PRIORITY;
             }
-
         }
 
-        #endregion
-
+        #endregion UI显示相关
     }
 }

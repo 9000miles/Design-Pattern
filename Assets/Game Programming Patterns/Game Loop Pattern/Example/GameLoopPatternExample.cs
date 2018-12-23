@@ -5,33 +5,30 @@
 using UnityEngine;
 using System.Collections;
 
-
-
 namespace GameLoopPatternExample
 {
-
     public class GameLoopPatternExample : MonoBehaviour
     {
-        GameLoopManager GameLoop = new GameLoopManager();
+        private GameLoopManager GameLoop = new GameLoopManager();
 
-        void Start()
+        private void Start()
         {
             //进行游戏循环
             //DoGameLoop();
             Debug.Log("Unity已经内建了游戏循环模式，即Update( )，按《游戏编程模式》书中的原版实现会导致卡死。这边仅保留代码框架，不作调用。");
+            DoGameLoop();
         }
 
-        void Update()
+        private void Update()
         {
-
         }
 
         /// <summary>
         /// 进行游戏循环
         /// </summary>
-        void DoGameLoop()
+        private void DoGameLoop()
         {
-            if (GameLoop==null)
+            if (GameLoop == null)
             {
                 GameLoop = new GameLoopManager();
             }
@@ -40,26 +37,24 @@ namespace GameLoopPatternExample
         }
     }
 
-
     /// <summary>
     /// 游戏循环manager
     /// </summary>
     public class GameLoopManager
     {
-
         /// <summary>
         /// 游戏更新的粒度
         /// </summary>
-       public const float MS_PER_UPDATE = 0.06F;
-       
+        public const float MS_PER_UPDATE = 0.06F;
+
         /// <summary>
         /// 进行游戏循环
         /// </summary>
-       public  void DoGameLoop()
+        public void DoGameLoop()
         {
             double previous = Time.realtimeSinceStartup;
             double lag = 0.0;
-            if (Time.realtimeSinceStartup==0f)
+            if (Time.realtimeSinceStartup == 0f)
             {
                 return;
             }
@@ -79,15 +74,17 @@ namespace GameLoopPatternExample
                     lag -= MS_PER_UPDATE;
                 }
 
+                if (Time.realtimeSinceStartup >= 1000f)
+                    return;
+
                 Render();
             }
         }
 
-
         /// <summary>
         /// 处理按键消息
         /// </summary>
-        void ProcessInput()
+        private void ProcessInput()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -95,10 +92,10 @@ namespace GameLoopPatternExample
             }
         }
 
-       /// <summary>
-       /// 进行渲染
-       /// </summary>
-        void Render()
+        /// <summary>
+        /// 进行渲染
+        /// </summary>
+        private void Render()
         {
             //do render
         }
@@ -106,13 +103,9 @@ namespace GameLoopPatternExample
         /// <summary>
         /// 处理更新
         /// </summary>
-        void Update()
+        private void Update()
         {
             //do update
         }
-
     }
-
-
-
 }

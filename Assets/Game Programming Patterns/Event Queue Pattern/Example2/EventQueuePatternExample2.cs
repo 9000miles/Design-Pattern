@@ -15,7 +15,7 @@ namespace EventQueuePatternExample2
     public class EventQueuePatternExample2 : MonoBehaviour
     {
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             //添加对"START"信息标识的监听，收到信息后触发OnReceiveMessageHandler处理。
             MessageDispatcher.AddListener("START", OnReceiveMessageHandler);
@@ -28,9 +28,8 @@ namespace EventQueuePatternExample2
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Message sMessage = new Message();
@@ -70,12 +69,10 @@ namespace EventQueuePatternExample2
             Debug.Log(sMessage.Data.ToString());
         }
 
-
         private void OnReceiveCustomMessageHandler(IMessage sMessage)
         {
             Debug.Log((sMessage as MyCustomMessage).MyCustomString);
         }
-
     }
 
     /// <summary>
@@ -85,7 +82,6 @@ namespace EventQueuePatternExample2
     {
         public string MyCustomString;
     }
-
 
     /// <summary>
     /// Message类相关信息的接口，就好像一条短信一样或者一个通知一样。
@@ -126,8 +122,6 @@ namespace EventQueuePatternExample2
         void Reset();
     }
 
-
-
     /// <summary>
     /// 消息的基类
     /// </summary>
@@ -162,6 +156,8 @@ namespace EventQueuePatternExample2
         }
 
         protected string mFilter = String.Empty;
+
+        /// <inheritdoc />
         public string Filter
         {
             get { return mFilter; }
@@ -178,18 +174,11 @@ namespace EventQueuePatternExample2
         }
     }
 
-
-
-
-
-
-
     /// <summary>
     /// 用来给监听信息者收到信息后执行的处理。
     /// </summary>
     /// <param name="rMessage"></param>
     public delegate void MessageHandler(IMessage rMessage);
-
 
     /// <summary>
     /// 消息分发管理管理类
@@ -339,12 +328,12 @@ namespace EventQueuePatternExample2
 
     public sealed class MessageDispatcherStub : MonoBehaviour
     {
-        void Awake()
+        private void Awake()
         {
             DontDestroyOnLoad(gameObject);
         }
 
-        void Update()
+        private void Update()
         {
             MessageDispatcher.Update();
         }
@@ -354,8 +343,4 @@ namespace EventQueuePatternExample2
             MessageDispatcher.ClearMessages();
         }
     }
-
-
-
 }
-
