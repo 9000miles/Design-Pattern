@@ -9,7 +9,7 @@ namespace FacadePatternExample2
 {
     public class FacadePatternExample2 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             BankAccountFacade bankAccount = new BankAccountFacade(12345678, 1234);
 
@@ -118,10 +118,10 @@ namespace FacadePatternExample2
     {
         private int accountNumber;
         private int securityCode;
-        AccountNumberCheck accChecker;
-        SecurityCodeCheck codeChecker;
-        FundsCheck fundChecker;
-        WelcomeToBank bankWelcome;
+        private AccountNumberCheck accChecker;
+        private SecurityCodeCheck codeChecker;
+        private FundsCheck fundChecker;
+        private WelcomeToBank bankWelcome;
 
         public BankAccountFacade(int accountNumber, int newSecurityCode)
         {
@@ -173,5 +173,4 @@ namespace FacadePatternExample2
             }
         }
     }
-
 }

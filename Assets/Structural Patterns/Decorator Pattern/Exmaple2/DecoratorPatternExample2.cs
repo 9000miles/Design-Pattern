@@ -9,7 +9,8 @@ namespace DecoratorPatternExample2
 {
     public class DecoratorPatternExample2 : MonoBehaviour
     {
-        void Start()
+        [ContextMenu("Start")]
+        private void Start()
         {
             // Make Pizzas:
             IPizza basicPizza = new TomatoSauce(new Mozzarella(new PlainPizza()));
@@ -18,14 +19,12 @@ namespace DecoratorPatternExample2
         }
     }
 
-
-
     public interface IPizza
     {
         string GetDescription();
+
         double GetCost();
     }
-
 
     public class PlainPizza : IPizza
     {
@@ -40,8 +39,6 @@ namespace DecoratorPatternExample2
         }
     }
 
-
-
     public abstract class ToppingDecorator : IPizza
     {
         protected IPizza tempPizza;
@@ -50,7 +47,6 @@ namespace DecoratorPatternExample2
         {
             this.tempPizza = newPizza;
         }
-
 
         public virtual string GetDescription()
         {
@@ -62,8 +58,6 @@ namespace DecoratorPatternExample2
             return tempPizza.GetCost();
         }
     }
-
-
 
     public class Mozzarella : ToppingDecorator
     {
@@ -84,7 +78,6 @@ namespace DecoratorPatternExample2
         }
     }
 
-
     public class TomatoSauce : ToppingDecorator
     {
         public TomatoSauce(IPizza newPizza) : base(newPizza)
@@ -103,16 +96,16 @@ namespace DecoratorPatternExample2
         }
     }
 
-
-
-
     namespace BadStyleExample
     {
         public abstract class Pizza
         {
             public abstract void SetDescription(string newDescription);
+
             public abstract string GetDescription();
+
             public abstract double GetCost();
+
             //public abstract bool HasFontina();
         }
 
@@ -134,8 +127,6 @@ namespace DecoratorPatternExample2
             {
                 return 10.00;
             }
-
         }
     }
-
 }

@@ -10,10 +10,13 @@ using System.Collections.Generic;
 
 namespace DecoratorPatternExample1
 {
-
     public class DecoratorPatternExample1 : MonoBehaviour
     {
-        void Start()
+        //[ContextMenuItem("fun", "Start")]
+        public int age;
+
+        [ContextMenu("Start")]
+        private void Start()
         {
             // Create book
             Book book = new Book("Worley", "Inside ASP.NET", 10);
@@ -37,7 +40,7 @@ namespace DecoratorPatternExample1
     /// <summary>
     /// The 'Component' abstract class
     /// </summary>
-    abstract class LibraryItem
+    internal abstract class LibraryItem
     {
         private int _numCopies;
 
@@ -54,7 +57,7 @@ namespace DecoratorPatternExample1
     /// <summary>
     /// The 'ConcreteComponent' class
     /// </summary>
-    class Book : LibraryItem
+    internal class Book : LibraryItem
     {
         private string _author;
         private string _title;
@@ -70,16 +73,16 @@ namespace DecoratorPatternExample1
         public override void Display()
         {
             Debug.Log("\nBook ------ ");
-            Debug.Log(" Author: "+ _author);
-            Debug.Log(" Title: "+ _title);
-            Debug.Log(" # Copies: "+ NumCopies);
+            Debug.Log(" Author: " + _author);
+            Debug.Log(" Title: " + _title);
+            Debug.Log(" # Copies: " + NumCopies);
         }
     }
 
     /// <summary>
     /// The 'ConcreteComponent' class
     /// </summary>
-    class Video : LibraryItem
+    internal class Video : LibraryItem
     {
         private string _director;
         private string _title;
@@ -98,17 +101,17 @@ namespace DecoratorPatternExample1
         public override void Display()
         {
             Debug.Log("\nVideo ----- ");
-            Debug.Log(" Director: "+ _director);
-            Debug.Log(" Title: "+ _title);
-            Debug.Log(" # Copies: "+ NumCopies);
-            Debug.Log(" Playtime: "+ _playTime+ "\n");
+            Debug.Log(" Director: " + _director);
+            Debug.Log(" Title: " + _title);
+            Debug.Log(" # Copies: " + NumCopies);
+            Debug.Log(" Playtime: " + _playTime + "\n");
         }
     }
 
     /// <summary>
     /// The 'Decorator' abstract class
     /// </summary>
-    abstract class Decorator : LibraryItem
+    internal abstract class Decorator : LibraryItem
     {
         protected LibraryItem libraryItem;
 
@@ -127,7 +130,7 @@ namespace DecoratorPatternExample1
     /// <summary>
     /// The 'ConcreteDecorator' class
     /// </summary>
-    class Borrowable : Decorator
+    internal class Borrowable : Decorator
     {
         protected List<string> borrowers = new List<string>();
 

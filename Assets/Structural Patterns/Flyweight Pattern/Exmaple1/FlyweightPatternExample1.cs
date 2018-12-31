@@ -12,7 +12,7 @@ namespace FlyweightPatternExample1
 {
     public class FlyweightPatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             // Build a document with text
             string document = "AAZZBBZB";
@@ -36,10 +36,9 @@ namespace FlyweightPatternExample1
     /// <summary>
     /// The 'FlyweightFactory' class
     /// </summary>
-    class CharacterFactory
+    internal class CharacterFactory
     {
-        private Dictionary<char, Character> _characters =
-          new Dictionary<char, Character>();
+        private Dictionary<char, Character> _characters = new Dictionary<char, Character>();
 
         public Character GetCharacter(char key)
         {
@@ -67,7 +66,7 @@ namespace FlyweightPatternExample1
     /// <summary>
     /// The 'Flyweight' abstract class
     /// </summary>
-    abstract class Character
+    internal abstract class Character
     {
         protected char symbol;
         protected int width;
@@ -82,7 +81,7 @@ namespace FlyweightPatternExample1
     /// <summary>
     /// A 'ConcreteFlyweight' class
     /// </summary>
-    class CharacterA : Character
+    internal class CharacterA : Character
     {
         // Constructor
         public CharacterA()
@@ -97,15 +96,14 @@ namespace FlyweightPatternExample1
         public override void Display(int pointSize)
         {
             this.pointSize = pointSize;
-            Debug.Log(this.symbol +
-              " (pointsize " + this.pointSize + ")");
+            Debug.Log(this.symbol + " (pointsize " + this.pointSize + ")");
         }
     }
 
     /// <summary>
     /// A 'ConcreteFlyweight' class
     /// </summary>
-    class CharacterB : Character
+    internal class CharacterB : Character
     {
         // Constructor
         public CharacterB()
@@ -123,7 +121,6 @@ namespace FlyweightPatternExample1
             Debug.Log(this.symbol +
               " (pointsize " + this.pointSize + ")");
         }
-
     }
 
     // ... C, D, E, etc.
@@ -131,7 +128,7 @@ namespace FlyweightPatternExample1
     /// <summary>
     /// A 'ConcreteFlyweight' class
     /// </summary>
-    class CharacterZ : Character
+    internal class CharacterZ : Character
     {
         // Constructor
         public CharacterZ()

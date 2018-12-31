@@ -7,47 +7,41 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
-//This real-world code demonstrates the Composite pattern used in building a graphical tree structure made up of primitive nodes(lines, circles, etc) and composite 
+//This real-world code demonstrates the Composite pattern used in building a graphical tree structure made up of primitive nodes(lines, circles, etc) and composite
 // nodes(groups of drawing elements that make up more complex elements).
 
 namespace CompositePatternExample1
 {
     public class CompositePatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
-            // Create a tree structure 
-            CompositeElement root =
-              new CompositeElement("Picture");
+            // Create a tree structure
+            CompositeElement root = new CompositeElement("Picture");
             root.Add(new PrimitiveElement("Red Line"));
             root.Add(new PrimitiveElement("Blue Circle"));
             root.Add(new PrimitiveElement("Green Box"));
 
             // Create a branch
-            CompositeElement comp =
-              new CompositeElement("Two Circles");
+            CompositeElement comp = new CompositeElement("Two Circles");
             comp.Add(new PrimitiveElement("Black Circle"));
             comp.Add(new PrimitiveElement("White Circle"));
             root.Add(comp);
 
             // Add and remove a PrimitiveElement
-            PrimitiveElement pe =
-              new PrimitiveElement("Yellow Line");
+            PrimitiveElement pe = new PrimitiveElement("Yellow Line");
             root.Add(pe);
             root.Remove(pe);
 
             // Recursively display nodes
             root.Display(1);
-
         }
     }
-
 
     /// <summary>
     /// The 'Component' Treenode
     /// </summary>
-    abstract class DrawingElement
+    internal abstract class DrawingElement
     {
         protected string _name;
 
@@ -58,14 +52,16 @@ namespace CompositePatternExample1
         }
 
         public abstract void Add(DrawingElement d);
+
         public abstract void Remove(DrawingElement d);
+
         public abstract void Display(int indent);
     }
 
     /// <summary>
     /// The 'Leaf' class
     /// </summary>
-    class PrimitiveElement : DrawingElement
+    internal class PrimitiveElement : DrawingElement
     {
         // Constructor
         public PrimitiveElement(string name)
@@ -92,14 +88,12 @@ namespace CompositePatternExample1
     /// <summary>
     /// The 'Composite' class
     /// </summary>
-    class CompositeElement : DrawingElement
+    internal class CompositeElement : DrawingElement
     {
-        private List<DrawingElement> elements =
-          new List<DrawingElement>();
+        private List<DrawingElement> elements = new List<DrawingElement>();
 
         // Constructor
-        public CompositeElement(string name)
-          : base(name)
+        public CompositeElement(string name) : base(name)
         {
         }
 
@@ -115,8 +109,7 @@ namespace CompositePatternExample1
 
         public override void Display(int indent)
         {
-            Debug.Log(new String('-', indent) +
-              "+ " + _name);
+            Debug.Log(new String('-', indent) + "+ " + _name);
 
             // Display each child element on this node
             foreach (DrawingElement d in elements)

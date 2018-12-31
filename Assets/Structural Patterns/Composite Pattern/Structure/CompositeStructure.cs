@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 public class CompositeStructure : MonoBehaviour
 {
-	void Start ( )
+    private void Start()
     {
         // Create a tree structure
         Composite root = new Composite("root");
@@ -29,15 +29,14 @@ public class CompositeStructure : MonoBehaviour
         root.Remove(leaf);
 
         // Recursively display tree
-        root.Display(1);
-
+        root.Display(5);
     }
 }
 
 /// <summary>
 /// The 'Component' abstract class
 /// </summary>
-abstract class Component
+internal abstract class Component
 {
     protected string name;
 
@@ -48,14 +47,16 @@ abstract class Component
     }
 
     public abstract void Add(Component c);
+
     public abstract void Remove(Component c);
+
     public abstract void Display(int depth);
 }
 
 /// <summary>
 /// The 'Composite' class
 /// </summary>
-class Composite : Component
+internal class Composite : Component
 {
     private List<Component> _children = new List<Component>();
 
@@ -90,7 +91,7 @@ class Composite : Component
 /// <summary>
 /// The 'Leaf' class
 /// </summary>
-class Leaf : Component
+internal class Leaf : Component
 {
     // Constructor
     public Leaf(string name)

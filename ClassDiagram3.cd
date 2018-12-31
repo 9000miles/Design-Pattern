@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BridgePatternExample1.BridgePatternExample1">
+    <Position X="6" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Structural Patterns\Bridge Pattern\Exmaple1\BridgePatternExample1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BridgePatternExample1.CustomersBase">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgKAAAAAAAAAAAAAAAAAAAAAAAEkABgAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Structural Patterns\Bridge Pattern\Exmaple1\BridgePatternExample1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BridgePatternExample1.Customers">
+    <Position X="3.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Structural Patterns\Bridge Pattern\Exmaple1\BridgePatternExample1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BridgePatternExample1.DataObject">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAgAAAAAAAAAAAAAAAAAAAABABAADAAAAAAAA=</HashCode>
+      <FileName>Assets\Structural Patterns\Bridge Pattern\Exmaple1\BridgePatternExample1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BridgePatternExample1.CustomersData">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAgAAAAAAAAAAAAAAAAAAAAFABAADABAAAAAA=</HashCode>
+      <FileName>Assets\Structural Patterns\Bridge Pattern\Exmaple1\BridgePatternExample1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9.16" />
+</ClassDiagram>

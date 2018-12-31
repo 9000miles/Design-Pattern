@@ -9,7 +9,7 @@
 // [Participants]
 //----------------------------------------------------------------------
 //     The classes and objects participating in this pattern are:
-// 
+//
 // Flyweight
 //      declares an interface through which flyweights can receive and act on extrinsic state.
 // ConcreteFlyweight
@@ -23,14 +23,12 @@
 //      maintains a reference to flyweight(s).
 //      computes or stores the extrinsic state of flyweight(s).
 
-
-
 using UnityEngine;
 using System.Collections;
 
 public class FlyweightStructure : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         // Arbitrary extrinsic state(外部状态)
         int externalState = 22;
@@ -47,18 +45,16 @@ public class FlyweightStructure : MonoBehaviour
         Flyweight fz = factory.GetFlyweight("Z");
         fz.Operation(--externalState);
 
-        UnsharedConcreteFlyweight fu = new
-          UnsharedConcreteFlyweight();
+        UnsharedConcreteFlyweight fu = new UnsharedConcreteFlyweight();
 
         fu.Operation(--externalState);
-
     }
 }
 
 /// <summary>
 /// The 'FlyweightFactory' class
 /// </summary>
-class FlyweightFactory
+internal class FlyweightFactory
 {
     private Hashtable flyweights = new Hashtable();
 
@@ -79,7 +75,7 @@ class FlyweightFactory
 /// <summary>
 /// The 'Flyweight' abstract class
 /// </summary>
-abstract class Flyweight
+internal abstract class Flyweight
 {
     public abstract void Operation(int externalState);
 }
@@ -87,7 +83,7 @@ abstract class Flyweight
 /// <summary>
 /// The 'ConcreteFlyweight' class
 /// </summary>
-class ConcreteFlyweight : Flyweight
+internal class ConcreteFlyweight : Flyweight
 {
     public override void Operation(int externalState)
     {
@@ -98,7 +94,7 @@ class ConcreteFlyweight : Flyweight
 /// <summary>
 /// The 'UnsharedConcreteFlyweight' class
 /// </summary>
-class UnsharedConcreteFlyweight : Flyweight
+internal class UnsharedConcreteFlyweight : Flyweight
 {
     public override void Operation(int externalState)
     {

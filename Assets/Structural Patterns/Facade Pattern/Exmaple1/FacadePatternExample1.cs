@@ -11,7 +11,7 @@ namespace FacadePatternExample1
 {
     public class FacadePatternExample1 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             // Facade
             Mortgage mortgage = new Mortgage();
@@ -20,15 +20,14 @@ namespace FacadePatternExample1
             Customer customer = new Customer("Ann McKinsey");
             bool eligible = mortgage.IsEligible(customer, 125000);
 
-            Debug.Log("\n" + customer.Name +
-                " has been " + (eligible ? "Approved" : "Rejected"));
+            Debug.Log("\n" + customer.Name + " has been " + (eligible ? "Approved" : "Rejected"));
         }
     }
 
     /// <summary>
     /// The 'Subsystem ClassA' class
     /// </summary>
-    class Bank
+    internal class Bank
     {
         public bool HasSufficientSavings(Customer c, int amount)
         {
@@ -40,7 +39,7 @@ namespace FacadePatternExample1
     /// <summary>
     /// The 'Subsystem ClassB' class
     /// </summary>
-    class Credit
+    internal class Credit
     {
         public bool HasGoodCredit(Customer c)
         {
@@ -52,7 +51,7 @@ namespace FacadePatternExample1
     /// <summary>
     /// The 'Subsystem ClassC' class
     /// </summary>
-    class Loan
+    internal class Loan
     {
         public bool HasNoBadLoans(Customer c)
         {
@@ -64,7 +63,7 @@ namespace FacadePatternExample1
     /// <summary>
     /// Customer class
     /// </summary>
-    class Customer
+    internal class Customer
     {
         private string _name;
 
@@ -84,7 +83,7 @@ namespace FacadePatternExample1
     /// <summary>
     /// The 'Facade' class
     /// </summary>
-    class Mortgage
+    internal class Mortgage
     {
         private Bank _bank = new Bank();
         private Loan _loan = new Loan();
@@ -92,7 +91,7 @@ namespace FacadePatternExample1
 
         public bool IsEligible(Customer cust, int amount)
         {
-            Debug.Log(cust.Name + "applies for " + amount+ " loan\n");
+            Debug.Log(cust.Name + "applies for " + amount + " loan\n");
 
             bool eligible = true;
 
